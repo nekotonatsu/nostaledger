@@ -6,12 +6,12 @@ use App\Models\DailyExpenditure;
 use App\Models\User;
 use App\Services\DailyExpenditureService;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class DailyExpenditureServiceTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     private DailyExpenditureService $service;
 
