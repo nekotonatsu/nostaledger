@@ -10,10 +10,12 @@ return new class extends Migration
     {
         Schema::create('daily_expenditures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('expense_name');
-            $table->datetime('expense_at');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->comment('支出を記録したユーザーのID');
+            $table->string('expense_name')->comment('支出名');
+            $table->datetime('expense_at', 3)->comment('支出日時（ミリ秒精度）');
             $table->timestamps();
+
+            $table->index(['user_id', 'expense_name'], 'idx_user_expense_name');
         });
     }
 
