@@ -14,7 +14,7 @@ class DailyExpenditureTagService
             ->get();
     }
 
-    public function createDailyExpenditure(
+    public function createDailyExpenditureTag(
         int $userId,
         string $tagName,
     ): DailyExpenditureTag {
@@ -24,7 +24,7 @@ class DailyExpenditureTagService
         ]);
     }
 
-    public function deleteDailyExpenditure(int $id): void
+    public function deleteDailyExpenditureTag(int $id): void
     {
         DailyExpenditureTag::whereKey($id)->delete();
     }
