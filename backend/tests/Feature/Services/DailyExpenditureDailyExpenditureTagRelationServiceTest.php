@@ -27,19 +27,19 @@ class DailyExpenditureDailyExpenditureTagRelationServiceTest extends TestCase
     {
         $user      = User::factory()->create();
         $otherUser = User::factory()->create();
-        $userDailyExpenditure = DailyExpenditure::factory(['user_id' => $user->id]);
-        $otherUserDailyExpenditure = DailyExpenditure::factory(['user_id' => $otherUser->id]);
-        $userDailyExpenditureTag = DailyExpenditureTag::factory(['user_id' => $user->id]);
-        $otherUserDailyExpenditureTag = DailyExpendituretag::factory(['user_id' => $otherUser->id]);
+        $userDailyExpenditure = DailyExpenditure::factory()->create(['user_id' => $user->id]);
+        $otherUserDailyExpenditure = DailyExpenditure::factory()->create(['user_id' => $otherUser->id]);
+        $userDailyExpenditureTag = DailyExpenditureTag::factory()->create(['user_id' => $user->id]);
+        $otherUserDailyExpenditureTag = DailyExpenditureTag::factory()->create(['user_id' => $otherUser->id]);
 
-        DailyExpenditureDailyExpenditureTagRelation::factory(
+        DailyExpenditureDailyExpenditureTagRelation::factory()->create(
             [
                 'user_id' => $user->id,
                 'dailyexpenditure_id' => $userDailyExpenditure->id,
                 'dailyexpendituretag_id' => $userDailyExpenditureTag->id
             ]
         );
-        DailyExpenditureDailyExpenditureTagRelation::factory(
+        DailyExpenditureDailyExpenditureTagRelation::factory()->create(
             [
                 'user_id' => $otherUser->id,
                 'dailyexpenditure_id' => $otherUserDailyExpenditure->id,
@@ -52,4 +52,3 @@ class DailyExpenditureDailyExpenditureTagRelationServiceTest extends TestCase
         $result->each(fn ($item) => $this->assertSame($user->id, $item->user_id));
     }
 }
-
