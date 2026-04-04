@@ -40,7 +40,7 @@ class DailyExpenditureTagServiceTest extends TestCase
 
         $result = $this->service->createDailyExpenditureTag($user->id, '食費');
 
-        $this->assertInstanceOf(DailyExpenditure::class, $result);
+        $this->assertInstanceOf(DailyExpenditureTag::class, $result);
         $this->assertDatabaseHas('daily_expenditure_tags', [
             'user_id'      => $user->id,
             'tag_name' => '食費',
