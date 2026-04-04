@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<DailyExpenditure>
+ * @extends Factory<DailyExpenditureTag>
  */
 class DailyExpenditureTagFactory extends Factory
 {
