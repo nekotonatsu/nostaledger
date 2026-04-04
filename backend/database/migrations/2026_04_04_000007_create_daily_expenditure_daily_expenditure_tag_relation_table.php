@@ -10,9 +10,15 @@ return new class extends Migration
     {
         Schema::create('daily_expenditure_daily_expenditure_tag_relations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->comment('必須出資に関わるタグを登録したユーザーのID');
-            $table->foreignId('daily_expenditure_id')->constrained()->cascadeOnDelete()->comment('出資ID');
-            $table->foreignId('daily_expenditure_tag_id')->constrained()->cascadeOnDelete()->comment('出資タグID');
+            $table->foreignId('user_id')->constrained('users', 'id', 'fk_de_det_user')->cascadeOnDelete()->comment('必須出資に関わるタグを登録したユーザーのID');
+            $table->foreignId('daily_expenditure_id')
+                ->constrained('daily_expenditures', 'id', 'fk_de_det_de')
+                ->cascadeOnDelete()
+                ->comment('出資ID');
+            $table->foreignId('daily_expenditure_tag_id')
+                ->constrained('daily_expenditure_tags', 'id', 'fk_de_det_det')
+                ->cascadeOnDelete()
+                ->comment('出資タグID');
             $table->timestamps();
 
             $table->index(
