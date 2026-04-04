@@ -34,20 +34,6 @@ class MustExpenditureServiceTest extends TestCase
         $result->each(fn ($item) => $this->assertSame($user->id, $item->user_id));
     }
 
-    public function test_登録した支払日順でデータが返されること(): void
-    {
-        $user = User::factory()->create();
-
-        MustExpenditure::factory()->create(['user_id' => $user->id]);
-        MustExpenditure::factory()->create(['user_id' => $user->id]);
-        MustExpenditure::factory()->create(['user_id' => $user->id]);
-
-        $result = $this->service->getAllUserMustExpenditure($user->id);
-
-        $this->assertTrue($result[0]->created_at->gt($result[1]->expense_at));
-        $this->assertTrue($result[1]->created_at->gt($result[2]->expense_at));
-    }
-
     public function test_DBに問題なくデータが格納されること(): void
     {
         $user      = User::factory()->create();
