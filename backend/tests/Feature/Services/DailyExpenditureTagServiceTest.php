@@ -8,7 +8,7 @@ use App\Services\DailyExpenditureTagService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class DailyExpenditureServiceTest extends TestCase
+class DailyExpenditureTagServiceTest extends TestCase
 {
     use RefreshDatabase;
 
