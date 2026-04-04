@@ -16,9 +16,9 @@ class MustExpenditureMustExpenditureTagRelationFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'mustexpendituretag_id' => MustExpenditureTag::factory(),
-            'mustexpenditure_id' => MustExpenditure::factory(),
+            'user_id'                 => User::factory(),
+            'must_expenditure_tag_id' => MustExpenditureTag::factory(),
+            'must_expenditure_id'     => MustExpenditure::factory(),
         ];
     }
 }

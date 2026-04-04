@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\MustExpenditureMustExpenditureTagRelation;
 use Illuminate\Database\Eloquent\Collection;
-use Carbon\Carbon;
 
 class MustExpenditureMustExpenditureTagRelationService
 {
@@ -21,9 +20,9 @@ class MustExpenditureMustExpenditureTagRelationService
         int $mustExpenditureId,
     ): MustExpenditureMustExpenditureTagRelation {
         return MustExpenditureMustExpenditureTagRelation::create([
-            'user_id'      => $userId,
-            'mustexpendituretag_id' => $mustExpenditureTagId,
-            'mustexpenditure_id'   => $mustExpenditureId,
+            'user_id'                 => $userId,
+            'must_expenditure_tag_id' => $mustExpenditureTagId,
+            'must_expenditure_id'     => $mustExpenditureId,
         ]);
     }
 

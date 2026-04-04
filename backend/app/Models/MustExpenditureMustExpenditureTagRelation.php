@@ -11,7 +11,7 @@ class MustExpenditureMustExpenditureTagRelation extends Model
 
     protected $fillable = [
         'user_id',
-        'mustexpendituretag_id',
-        'mustexpenditure_id'
+        'must_expenditure_tag_id',
+        'must_expenditure_id'
     ];
 }

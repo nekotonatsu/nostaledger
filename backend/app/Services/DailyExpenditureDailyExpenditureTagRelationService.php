@@ -17,13 +17,13 @@ class DailyExpenditureDailyExpenditureTagRelationService
 
     public function createDailyExpenditureDailyExpenditureTagRelation(
         int $userId,
-        int $dailyexpendituretagId,
-        int $dailyexpenditureId,
+        int $dailyExpenditureTagId,
+        int $dailyExpenditureId,
     ): DailyExpenditureDailyExpenditureTagRelation {
         return DailyExpenditureDailyExpenditureTagRelation::create([
-            'user_id'      => $userId,
-            'dailyexpendituretag_id' => $dailyexpendituretagId,
-            'dailyexpenditure_id'   => $dailyexpenditureId,
+            'user_id'                  => $userId,
+            'daily_expenditure_tag_id' => $dailyExpenditureTagId,
+            'daily_expenditure_id'     => $dailyExpenditureId,
         ]);
     }
 

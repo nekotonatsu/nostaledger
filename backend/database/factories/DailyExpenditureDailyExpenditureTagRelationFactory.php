@@ -16,9 +16,9 @@ class DailyExpenditureDailyExpenditureTagRelationFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'dailyexpendituretag_id' => DailyExpenditureTag::factory(),
-            'dailyexpenditure_id' => DailyExpenditure::factory(),
+            'user_id'                  => User::factory(),
+            'daily_expenditure_tag_id' => DailyExpenditureTag::factory(),
+            'daily_expenditure_id'     => DailyExpenditure::factory(),
         ];
     }
 }

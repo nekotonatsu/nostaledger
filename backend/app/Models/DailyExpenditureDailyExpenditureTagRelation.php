@@ -11,7 +11,7 @@ class DailyExpenditureDailyExpenditureTagRelation extends Model
 
     protected $fillable = [
         'user_id',
-        'dailyexpendituretag_id',
-        'dailyexpenditure_id'
+        'daily_expenditure_tag_id',
+        'daily_expenditure_id'
     ];
 }
