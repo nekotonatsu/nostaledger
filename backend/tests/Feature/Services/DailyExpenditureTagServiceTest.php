@@ -38,7 +38,7 @@ class DailyExpenditureTagServiceTest extends TestCase
     {
         $user      = User::factory()->create();
 
-        $result = $this->service->createDailyExpenditureTag($user->id, '食費', $expenseAt);
+        $result = $this->service->createDailyExpenditureTag($user->id, '食費');
 
         $this->assertInstanceOf(DailyExpenditure::class, $result);
         $this->assertDatabaseHas('daily_expenditure_tags', [
@@ -58,8 +58,8 @@ class DailyExpenditureTagServiceTest extends TestCase
 
     public function test_レコードを削除した際他のレコードを削除しない(): void
     {
-        $target = DailyExpenditure::factory()->create();
-        $other  = DailyExpenditure::factory()->create();
+        $target = DailyExpenditureTag::factory()->create();
+        $other  = DailyExpenditureTag::factory()->create();
 
         $this->service->deleteDailyExpenditureTag($target->id);
 
