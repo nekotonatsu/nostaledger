@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('expense_name')->comment('必須出資名');
             $table->timestamps();
 
-            $table->index(['user_id', 'tag_name'], 'idx_user_expense_tag_name');
+            $table->index(['user_id', 'expense_name'], 'idx_user_must_expense_name');
         });
     }
 
