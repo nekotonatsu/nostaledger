@@ -10,15 +10,14 @@ class MustExpenditureService
 {
     public function getAllUserMustExpenditure(int $userId): Collection
     {
-        return DailyExpenditure::where('user_id', $userId)
+        return MustExpenditure::where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->get();
     }
 
     public function createMustExpenditure(
         int $userId,
-        string $expenseName,
-        Carbon $expenseAt
+        string $expenseName
     ): MustExpenditure {
         return MustExpenditure::create([
             'user_id'      => $userId,

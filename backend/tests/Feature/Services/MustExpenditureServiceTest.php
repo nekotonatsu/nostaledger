@@ -42,7 +42,7 @@ class MustExpenditureServiceTest extends TestCase
         MustExpenditure::factory()->create(['user_id' => $user->id]);
         MustExpenditure::factory()->create(['user_id' => $user->id]);
 
-        $result = $this->service->getAllUserDailyExpenditure($user->id);
+        $result = $this->service->getAllUserMustExpenditure($user->id);
 
         $this->assertTrue($result[0]->created_at->gt($result[1]->expense_at));
         $this->assertTrue($result[1]->created_at->gt($result[2]->expense_at));
