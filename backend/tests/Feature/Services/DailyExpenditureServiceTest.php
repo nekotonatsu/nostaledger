@@ -82,3 +82,4 @@ class DailyExpenditureServiceTest extends TestCase
         $this->assertDatabaseHas('daily_expenditures', ['id' => $other->id]);
     }
 }
+

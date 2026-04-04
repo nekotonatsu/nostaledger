@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Services\TransactionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    public function __construct(private readonly TransactionService $service) {}
+
     public function index(): JsonResponse
     {
-        $transactions = Transaction::orderBy('date', 'desc')->get();
-
-        return response()->json($transactions);
+        return response()->json($this->service->getAll());
     }
 
     public function store(Request $request): JsonResponse
@@ -26,9 +27,7 @@ class TransactionController extends Controller
             'date'     => 'required|date',
         ]);
 
-        $transaction = Transaction::create($validated);
-
-        return response()->json($transaction, 201);
+        return response()->json($this->service->create($validated), 201);
     }
 
     public function show(Transaction $transaction): JsonResponse
@@ -46,14 +45,12 @@ class TransactionController extends Controller
             'date'     => 'sometimes|date',
         ]);
 
-        $transaction->update($validated);
-
-        return response()->json($transaction);
+        return response()->json($this->service->update($transaction, $validated));
     }
 
     public function destroy(Transaction $transaction): JsonResponse
     {
-        $transaction->delete();
+        $this->service->delete($transaction);
 
         return response()->json(null, 204);
     }
