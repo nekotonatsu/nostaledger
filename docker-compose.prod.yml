@@ -28,6 +28,7 @@ services:
       - APP_ENV=production
       - APP_DEBUG=false
       - LOG_LEVEL=error
+      - DB_CONNECTION=mysql
       - DB_HOST=db
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
