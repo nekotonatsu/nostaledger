@@ -40,7 +40,7 @@ class MustExpenditureTagServiceTest extends TestCase
 
         $result = $this->service->createMustExpenditureTag($user->id, '食費');
 
-        $this->assertInstanceOf(DailyExpenditureTag::class, $result);
+        $this->assertInstanceOf(MustExpenditureTag::class, $result);
         $this->assertDatabaseHas('daily_expenditure_tags', [
             'user_id'      => $user->id,
             'tag_name' => '食費',
@@ -49,7 +49,7 @@ class MustExpenditureTagServiceTest extends TestCase
 
     public function test_指定レコードの削除が行える(): void
     {
-        $expenditure = DailyExpenditureTag::factory()->create();
+        $expenditure = MustExpenditureTag::factory()->create();
 
         $this->service->deleteMustExpenditureTag($expenditure->id);
 
@@ -58,8 +58,8 @@ class MustExpenditureTagServiceTest extends TestCase
 
     public function test_レコードを削除した際他のレコードを削除しない(): void
     {
-        $target = DailyExpenditureTag::factory()->create();
-        $other  = DailyExpenditureTag::factory()->create();
+        $target = MustExpenditureTag::factory()->create();
+        $other  = MustExpenditureTag::factory()->create();
 
         $this->service->deleteMustExpenditureTag($target->id);
 
