@@ -12,6 +12,7 @@ class DailyExpenditure extends Model
     protected $fillable = [
         'user_id',
         'expense_name',
+        'amount',
         'expense_at',
     ];
 
