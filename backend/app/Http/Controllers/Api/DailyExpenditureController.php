@@ -22,12 +22,14 @@ class DailyExpenditureController extends Controller
     {
         $validated = $request->validate([
             'expense_name' => 'required|string|max:255',
+            'amount'       => 'required|integer|min:0',
             'expense_at'   => 'required|date',
         ]);
 
         $result = $this->service->createDailyExpenditure(
             $request->user()->id,
             $validated['expense_name'],
+            $validated['amount'],
             Carbon::parse($validated['expense_at']),
         );
 

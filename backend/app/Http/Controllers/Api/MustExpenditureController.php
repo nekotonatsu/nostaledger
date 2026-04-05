@@ -21,11 +21,13 @@ class MustExpenditureController extends Controller
     {
         $validated = $request->validate([
             'expense_name' => 'required|string|max:255',
+            'amount'       => 'required|integer|min:0',
         ]);
 
         $result = $this->service->createMustExpenditure(
             $request->user()->id,
             $validated['expense_name'],
+            $validated['amount'],
         );
 
         return response()->json($result, 201);

@@ -11,6 +11,7 @@ class MustExpenditure extends Model
 
     protected $fillable = [
         'user_id',
-        'expense_name'
+        'expense_name',
+        'amount',
     ];
 }

@@ -38,12 +38,13 @@ class MustExpenditureServiceTest extends TestCase
     {
         $user      = User::factory()->create();
 
-        $result = $this->service->createMustExpenditure($user->id, '食費');
+        $result = $this->service->createMustExpenditure($user->id, '食費', 30000);
 
         $this->assertInstanceOf(MustExpenditure::class, $result);
         $this->assertDatabaseHas('must_expenditures', [
             'user_id'      => $user->id,
-            'expense_name' => '食費'
+            'expense_name' => '食費',
+            'amount'       => 30000,
         ]);
     }
 
