@@ -16,6 +16,7 @@ class DailyExpenditureFactory extends Factory
         return [
             'user_id'      => User::factory(),
             'expense_name' => fake()->word(),
+            'amount'       => fake()->numberBetween(100, 100000),
             'expense_at'   => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }

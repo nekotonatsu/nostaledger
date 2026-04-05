@@ -15,7 +15,8 @@ class MustExpenditureFactory extends Factory
     {
         return [
             'user_id'      => User::factory(),
-            'expense_name' => fake()->word()
+            'expense_name' => fake()->word(),
+            'amount'       => fake()->numberBetween(100, 100000),
         ];
     }
 }

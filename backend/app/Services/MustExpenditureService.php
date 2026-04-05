@@ -17,11 +17,13 @@ class MustExpenditureService
 
     public function createMustExpenditure(
         int $userId,
-        string $expenseName
+        string $expenseName,
+        int $amount
     ): MustExpenditure {
         return MustExpenditure::create([
             'user_id'      => $userId,
-            'expense_name' => $expenseName
+            'expense_name' => $expenseName,
+            'amount'       => $amount,
         ]);
     }
 

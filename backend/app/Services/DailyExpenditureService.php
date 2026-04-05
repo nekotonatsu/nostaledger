@@ -18,11 +18,13 @@ class DailyExpenditureService
     public function createDailyExpenditure(
         int $userId,
         string $expenseName,
+        int $amount,
         Carbon $expenseAt
     ): DailyExpenditure {
         return DailyExpenditure::create([
             'user_id'      => $userId,
             'expense_name' => $expenseName,
+            'amount'       => $amount,
             'expense_at'   => $expenseAt,
         ]);
     }

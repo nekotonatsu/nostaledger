@@ -54,12 +54,13 @@ class DailyExpenditureServiceTest extends TestCase
         $user      = User::factory()->create();
         $expenseAt = Carbon::parse('2026-04-01 12:00:00.123');
 
-        $result = $this->service->createDailyExpenditure($user->id, '食費', $expenseAt);
+        $result = $this->service->createDailyExpenditure($user->id, '食費', 1500, $expenseAt);
 
         $this->assertInstanceOf(DailyExpenditure::class, $result);
         $this->assertDatabaseHas('daily_expenditures', [
             'user_id'      => $user->id,
             'expense_name' => '食費',
+            'amount'       => 1500,
         ]);
     }
 
