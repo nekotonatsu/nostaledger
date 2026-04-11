@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
+import { Link } from 'react-router-dom'
 
 export default function RegistAccount() {
   const { register } = useAuth()
@@ -12,6 +13,7 @@ export default function RegistAccount() {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -19,7 +21,8 @@ export default function RegistAccount() {
     setLoading(true)
     try {
       await register(name, email, password, passwordConfirmation)
-      navigate('/', { replace: true })
+      setSuccess(true)
+      setTimeout(() => navigate('/login', { replace: true }), 2000)
     } catch {
       setError('登録に失敗しました。入力内容を確認してください。')
     } finally {
