@@ -1,26 +1,29 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
-import { Link } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext'
 
-export default function Login() {
-  const { login } = useAuth()
+export default function RegistAccount() {
+  const { register } = useAuth()
   const navigate = useNavigate()
 
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     setLoading(true)
     try {
-      await login(email, password)
-      navigate('/', { replace: true })
+      await register(name, email, password, passwordConfirmation)
+      setSuccess(true)
+      setTimeout(() => navigate('/login', { replace: true }), 2000)
     } catch {
-      setError('メールアドレスまたはパスワードが正しくありません。')
+      setError('登録に失敗しました。入力内容を確認してください。')
     } finally {
       setLoading(false)
     }
@@ -31,6 +34,16 @@ export default function Login() {
       <div className="bg-white rounded-xl shadow p-8 w-full max-w-sm">
         <h1 className="text-2xl font-bold text-indigo-600 mb-6 text-center">NostaleEdger</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div>
+            <label className="block text-sm text-gray-600 mb-1">名前</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            />
+          </div>
           <div>
             <label className="block text-sm text-gray-600 mb-1">メールアドレス</label>
             <input
@@ -51,21 +64,26 @@ export default function Login() {
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
           </div>
+          <div>
+            <label className="block text-sm text-gray-600 mb-1">パスワード（確認）</label>
+            <input
+              type="password"
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
+              required
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            />
+          </div>
+          {success && <p className="text-green-600 text-sm">アカウントの登録が完了しました。ログイン画面に移動します...</p>}
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
             disabled={loading}
             className="bg-indigo-600 text-white rounded-lg py-2 text-sm font-semibold hover:bg-indigo-700 disabled:opacity-50"
           >
-            {loading ? 'ログイン中...' : 'ログイン'}
+            {loading ? '登録中...' : 'アカウント作成'}
           </button>
         </form>
-        <p className="text-center text-sm text-gray-500 mt-4">
-          アカウントをお持ちでない方は
-          <Link to="/registAccount" className="text-indigo-600 hover:underline ml-1">
-            こちら
-          </Link>
-        </p>
       </div>
     </div>
   )
