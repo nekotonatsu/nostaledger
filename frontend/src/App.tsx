@@ -5,6 +5,7 @@ import PrivateRoute from './components/PrivateRoute'
 import Dashboard from './pages/Dashboard'
 import Transactions from './pages/Transactions'
 import Login from './pages/Login'
+import RegistAccount from './pages/regist/RegistAccount'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/registAccount" element={<RegistAccount />} />
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Layout />}>
               <Route index element={<Dashboard />} />
