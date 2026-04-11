@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
   const { login } = useAuth()
@@ -59,6 +60,12 @@ export default function Login() {
             {loading ? 'ログイン中...' : 'ログイン'}
           </button>
         </form>
+        <p className="text-center text-sm text-gray-500 mt-4">
+          アカウントをお持ちでない方は
+          <Link to="/registAccount" className="text-indigo-600 hover:underline ml-1">
+            こちら
+          </Link>
+        </p>
       </div>
     </div>
   )
