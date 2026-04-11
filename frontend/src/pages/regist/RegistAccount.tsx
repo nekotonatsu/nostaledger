@@ -75,6 +75,7 @@ export default function RegistAccount() {
               className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"
             />
           </div>
+          {success && <p className="text-green-600 text-sm">アカウントの登録が完了しました。ログイン画面に移動します...</p>}
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
