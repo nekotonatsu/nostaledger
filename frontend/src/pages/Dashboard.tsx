@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import MainPageHeader from '../components/header/MainPagaHeader'
 
 interface Summary {
   income: number
