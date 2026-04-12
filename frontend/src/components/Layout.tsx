@@ -1,16 +1,7 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext'
+import { Outlet } from 'react-router-dom'
 import MainPageHeader from './header/MainPagaHeader'
 
 export default function Layout() {
-  const { user, logout } = useAuth()
-  const navigate = useNavigate()
-
-  const handleLogout = async () => {
-    await logout()
-    navigate('/login', { replace: true })
-  }
-
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
