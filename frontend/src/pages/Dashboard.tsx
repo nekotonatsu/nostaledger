@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import AllExpenditure from '../components/contents/allExpenditure'
 
 interface Summary {
   income: number
@@ -32,6 +33,7 @@ export default function Dashboard() {
 
   return (
     <div>
+      <AllExpenditure/>
       <h2 className="text-2xl font-bold text-gray-800 mb-6">ダッシュボード</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white rounded-xl shadow p-6">
