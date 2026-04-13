@@ -36,6 +36,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('must-expenditure-tags', MustExpenditureTagController::class)
         ->only(['index', 'store', 'destroy']);
 
+    Route::get(
+        'daily-expenditure-daily-expenditure-tag-relations/amount-by-tag',
+        [DailyExpenditureDailyExpenditureTagRelationController::class, 'amountByTag']
+    );
     Route::apiResource(
         'daily-expenditure-daily-expenditure-tag-relations',
         DailyExpenditureDailyExpenditureTagRelationController::class
