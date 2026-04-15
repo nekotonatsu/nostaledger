@@ -1,25 +1,30 @@
-import HeaderTag from './HeaderTag'
+import TagHeader from './TagHeader'
 import AppName from './AppName'
+import ExpenditureHeader  from './ExpenditureHeader'
 
 export default function AllPageHeader() {
     return (
         <div className="flex items-center w-full">
             <div className="flex gap-4 flex-wrap">
-                <HeaderTag
+                <ExpenditureHeader
                     headerMessage = '確定支出追加・削除'
                     to = "/login"
+                    apiEndpoint='must-expenditures'
                 />
-                <HeaderTag
+                <ExpenditureHeader
                     headerMessage = '支出追加・削除'
                     to = "/login"
+                    apiEndpoint='daily-expenditures'
                 />
-                <HeaderTag
+                <TagHeader
                     headerMessage = 'タグ追加・削除'
                     to = "/login"
+                    apiEndpoint='/api/daily-expenditure-tags'
                 />
-                <HeaderTag
+                <TagHeader
                     headerMessage = '必須出資タグ追加・削除'
                     to = "/login"
+                    apiEndpoint='must-expenditure-tags'
                 />
             </div>
             <div className="ml-auto shrink-0 pl-4">
