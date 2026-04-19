@@ -37,6 +37,13 @@ class DailyExpenditureDailyExpenditureTagRelationController extends Controller
         return response()->json($result, 201);
     }
 
+    public function amountByTag(Request $request): JsonResponse
+    {
+        return response()->json(
+            $this->service->getAmountGroupByTag($request->user()->id)
+        );
+    }
+
     public function destroy(DailyExpenditureDailyExpenditureTagRelation $dailyExpenditureDailyExpenditureTagRelation): JsonResponse
     {
         $this->service->deleteDailyExpenditureDailyExpenditureTagRelation(
