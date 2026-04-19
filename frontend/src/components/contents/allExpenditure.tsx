@@ -12,11 +12,17 @@ const API_URL = import.meta.env.VITE_API_URL ?? '/api'
 export default function AllExpenditure() {
     const [expenditures, setExpenditures] = useState<AmountByTag[]>([])
 
-    useEffect(() => {
+    const fetchData = () => {
         axios.get<AmountByTag[]>(
             `${API_URL}/daily-expenditure-daily-expenditure-tag-relations/amount-by-tag`,
             { withCredentials: true }
         ).then((res) => setExpenditures(res.data))
+    }
+
+    useEffect(() => {
+        fetchData()
+        window.addEventListener('expenditure-registered', fetchData)
+        return () => window.removeEventListener('expenditure-registered', fetchData)
     }, [])
 
     const maxAmount = Math.max(...expenditures.map((item) => item.total_amount), 1)
