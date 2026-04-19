@@ -17,14 +17,14 @@ export default function AllPageHeader() {
                     apiEndpoint='daily-expenditures'
                 />
                 <TagHeader
-                    headerMessage = 'タグ追加・削除'
-                    to = "/login"
-                    apiEndpoint='/api/daily-expenditure-tags'
-                />
-                <TagHeader
                     headerMessage = '必須出資タグ追加・削除'
                     to = "/login"
                     apiEndpoint='must-expenditure-tags'
+                />
+                <TagHeader
+                    headerMessage = 'タグ追加・削除'
+                    to = "/login"
+                    apiEndpoint='daily-expenditure-tags'
                 />
             </div>
             <div className="ml-auto shrink-0 pl-4">
