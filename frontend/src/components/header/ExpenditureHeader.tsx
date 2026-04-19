@@ -3,13 +3,17 @@ import AddExpenditureForm from '../contents/form/addExpenditureForm'
 
 interface Props {
     headerMessage: string
-    to: string
     apiEndpoint: string
+    isOpen: boolean
+    setIsOpen: (isOpen: boolean) => void
 }
 
-export default function ExpenditureHeader({ headerMessage, apiEndpoint }: Props) {
-    const [isOpen, setIsOpen] = useState(false)
-
+export default function ExpenditureHeader({ 
+    headerMessage,
+    apiEndpoint,
+    isOpen,
+    setIsOpen
+}: Props) {
     return (
         <div className="relative">
             <button
