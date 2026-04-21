@@ -33,6 +33,22 @@ class DailyExpenditureDailyExpenditureTagRelationService
         DailyExpenditureDailyExpenditureTagRelation::whereKey($id)->delete();
     }
 
+    public function getExpendituresWithTag(int $userId): Collection
+    {
+        return DailyExpenditureDailyExpenditureTagRelation::query()
+            ->where('daily_expenditure_daily_expenditure_tag_relations.user_id', $userId)
+            ->join('daily_expenditure_tags', 'daily_expenditure_daily_expenditure_tag_relations.daily_expenditure_tag_id', '=', 'daily_expenditure_tags.id')
+            ->join('daily_expenditures', 'daily_expenditure_daily_expenditure_tag_relations.daily_expenditure_id', '=', 'daily_expenditures.id')
+            ->orderBy('daily_expenditures.expense_at', 'desc')
+            ->select([
+                'daily_expenditures.expense_name',
+                'daily_expenditures.amount',
+                'daily_expenditures.expense_at',
+                'daily_expenditure_tags.tag_name',
+            ])
+            ->get();
+    }
+
     public function getAmountGroupByTag(int $userId): Collection
     {
         return DailyExpenditureDailyExpenditureTagRelation::query()
