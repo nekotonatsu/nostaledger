@@ -37,6 +37,13 @@ class DailyExpenditureDailyExpenditureTagRelationController extends Controller
         return response()->json($result, 201);
     }
 
+    public function expendituresWithTag(Request $request): JsonResponse
+    {
+        return response()->json(
+            $this->service->getExpendituresWithTag($request->user()->id)
+        );
+    }
+
     public function amountByTag(Request $request): JsonResponse
     {
         return response()->json(

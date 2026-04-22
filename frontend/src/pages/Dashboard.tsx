@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import AllExpenditure from '../components/contents/allExpenditure'
+import DailyExpenditureTextGraph from '../components/contents/expenditureGraph/textGraph.tsx'
 
 interface Summary {
   income: number
@@ -48,6 +49,9 @@ export default function Dashboard() {
           <p className="text-sm text-gray-500 mb-1">残高</p>
           <p className="text-2xl font-bold text-indigo-600">{fmt(summary.balance)}</p>
         </div>
+      </div>
+      <div className='h-200 w-1/2 space-y-1 space-x-3 border m-5'>
+        <DailyExpenditureTextGraph/>
       </div>
     </div>
   )
