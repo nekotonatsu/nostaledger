@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import AddExpenditureForm from '../contents/form/addExpenditureForm'
 
 interface Props {
