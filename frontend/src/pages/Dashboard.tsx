@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import AllExpenditure from '../components/contents/allExpenditure'
-import DailyExpenditureTextGraph from '../components/contents/mustExpenditure/textGraph.tsx'
+import DailyExpenditureTextGraph from '../components/contents/expenditureGraph/textGraph.tsx'
 
 interface Summary {
   income: number
