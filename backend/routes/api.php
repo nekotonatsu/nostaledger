@@ -40,6 +40,10 @@ Route::middleware('auth:sanctum')->group(function () {
         'daily-expenditure-daily-expenditure-tag-relations/amount-by-tag',
         [DailyExpenditureDailyExpenditureTagRelationController::class, 'amountByTag']
     );
+    Route::get(
+        'daily-expenditure-daily-expenditure-tag-relations/expenditures-with-tag',
+        [DailyExpenditureDailyExpenditureTagRelationController::class, 'expendituresWithTag']
+    );
     Route::apiResource(
         'daily-expenditure-daily-expenditure-tag-relations',
         DailyExpenditureDailyExpenditureTagRelationController::class
