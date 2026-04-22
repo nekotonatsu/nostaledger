@@ -5,6 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// tableカラム
+// id
+// user_id
+// expense_name
+// expense_at
+// created_at
+// updated_at
+
 class DailyExpenditure extends Model
 {
     use HasFactory;
