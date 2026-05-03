@@ -1,23 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, UIEvent } from 'react'
 import axios from 'axios'
 
-interface DailyExpenditureWithTag {
+interface MustExpenditure {
+    id: number
     expense_name: string
     amount: number
-    expense_at: string
-    tag_name: string
 }
 
 const API_URL = import.meta.env.VITE_API_URL ?? '/api'
 
-export default function TextGraph() {
-    const [list, setList] = useState<DailyExpenditureWithTag[]>([])
+export default function MustExpenditureTextGraph() {
+    const [list, setList] = useState<MustExpenditure[]>([])
+    const [atBottom, setAtBottom] = useState(false)
 
     const fetchData = () => {
-        axios.get<DailyExpenditureWithTag[]>(
-            `${API_URL}/daily-expenditure-daily-expenditure-tag-relations/expenditures-with-tag`,
+        axios.get<MustExpenditure[]>(
+            `${API_URL}/must-expenditures`,
             { withCredentials: true }
         ).then((res) => setList(res.data))
+        .catch(() => {})
     }
 
     useEffect(() => {
@@ -26,36 +27,39 @@ export default function TextGraph() {
         return () => window.removeEventListener('expenditure-registered', fetchData)
     }, [])
 
+    const handleScroll = (e: UIEvent<HTMLDivElement>) => {
+        const el = e.currentTarget
+        setAtBottom(el.scrollTop + el.clientHeight >= el.scrollHeight - 4)
+    }
+
     return (
-        <>
-            <div className="space-y-3 w-250 max-h-64 overflow-y-scroll border py-2">
-                <div className='w-200 flex justify-between items-center border-b border-gray-100 py-2 text-sm'>
-                    <div className="flex items-center gap-2 w-2/5 bg-blue-500">
-                        <span className="text-xs text-white w-1/2 bg-indigo-400 rounded px-2 py-0.5 text-center">タグ名</span>
-                        <span className="text-gray-800 w-1/2 text-center">支払い名</span>
+        <div>
+            <div className="relative">
+                <div
+                    className="space-y-2 max-h-64 overflow-y-scroll border py-2 bg-white custom-scrollbar"
+                    onScroll={handleScroll}
+                >
+                    <div className="flex justify-between items-center border-b border-gray-200 pb-2 text-sm font-bold px-2">
+                        <span className="w-2/3 text-gray-700">支出名</span>
+                        <span className="w-1/3 text-right text-gray-700">金額</span>
                     </div>
-                    <div className="flex items-center gap-4 text-gray-500 w-3/5 bg-red-500">
-                        <span className='text-center w-1/2'>支払日</span>
-                        <span className="font-medium text-gray-800 text-center w-1/2">金額</span>
-                    </div>
+                    {list.map((item) => (
+                        <div key={item.id} className="flex justify-between items-center border-b border-gray-100 py-1 text-sm px-2">
+                            <span className="w-2/3 text-gray-800">{item.expense_name}</span>
+                            <span className="w-1/3 text-right font-medium text-gray-800">{item.amount.toLocaleString()}円</span>
+                        </div>
+                    ))}
+                    {list.length === 0 && (
+                        <p className="text-gray-400 text-sm px-2">データがありません</p>
+                    )}
                 </div>
-                <hr></hr>
-                {list.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center border-b border-gray-100 py-2 text-sm">
-                        <div className="flex items-center gap-2 w-2/5 bg-blue-500">
-                            <span className="text-xs text-white w-1/2 bg-indigo-400 rounded px-2 py-0.5 text-center">{item.tag_name}</span>
-                            <span className="text-gray-800 w-1/2 text-center">{item.expense_name}</span>
-                        </div>
-                        <div className="flex items-center gap-4 text-gray-500 w-3/5 bg-red-500">
-                            <span className='text-center w-1/2'>{item.expense_at.slice(0, 10)}</span>
-                            <span className="font-medium text-gray-800 text-center w-1/2">{item.amount.toLocaleString()}円</span>
-                        </div>
-                    </div>
-                ))}
-                {list.length === 0 && (
-                    <p className="text-gray-400 text-sm">データがありません</p>
+                {!atBottom && list.length > 0 && (
+                    <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none" />
                 )}
             </div>
-        </>
+            {!atBottom && list.length > 0 && (
+                <p className="text-xs text-gray-400 text-center mt-1">↓ スクロールでもっと見る</p>
+            )}
+        </div>
     )
 }
